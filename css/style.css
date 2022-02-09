@@ -1,0 +1,190 @@
+* {
+  font-size: 14;
+  margin: 0px;
+  padding: 0px;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+  /* z-index: -1; */
+  z-index: 1;
+  /* transition: 1s ease-in-out 0s; */
+}
+
+.text-svg{
+    margin-top: 10vh;
+    min-height: 80vh;
+    max-height: 80vh;
+    min-width: 95vw;
+    max-width: 95vw;
+}
+
+.fullscreen{
+    position: absolute;
+    background-color: seagreen;
+    height: 100vh;
+    width: 100vw;
+    
+    z-index: 1;
+    /* transition: 1s ease-in-out 0s; */
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  height: 300vh;
+  width: 100%;
+
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  background-color: #dbdaa36b;
+}
+.container-2{
+    height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+.box {
+  /* height: 90%;
+  width: 47%; */
+  /* border: 2px solid rgb(0, 0, 0); */
+  border-radius: 10px;
+  /* overflow: hidden; */
+
+  background-image: linear-gradient(#feffff, #f5f8d4);
+  box-shadow: 1px 10px 5px 8px rgba(0, 0, 0, 0.1);
+}
+
+.svg {
+  height: 90%;
+  width: 75%;
+  /* z-index: 0; */
+}
+
+/* .svg:hover{
+    background-color: seagreen;
+} */
+
+.listado{
+    height: 90%;
+    width: 15%;
+    overflow-y: auto; 
+}
+
+.ol-manzana {
+  height: auto;
+  width: 100%;
+  /* overflow-y: auto; */
+}
+
+.li-manzana {
+  width: 60%;
+  margin: 0px 3vw;
+  text-align: center;
+}
+
+.json {
+  height: 40%;
+  width: 95%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-direction: column;
+  /* overflow-y: scroll; */
+  /* overflow-x: hidden; */
+}
+
+.container_boxBlock {
+  height: auto;
+  width: auto;
+  border-radius: 10px;
+  /* overflow-y: auto; */
+  /* overflow: hidden; */
+}
+
+.box-block {
+  height: auto;
+  width: 98%;
+
+  background-color: #dbdaa36b;
+}
+
+.escalon:first-child {
+  margin-top: 1vh;
+}
+
+.escalon {
+  /* width: 100px; */
+  margin-left: 1vw;
+}
+
+.numero {
+  height: auto;
+  width: auto;
+
+  margin-top: 1.5vh;
+  border-radius: 10px;
+  padding: 1vh 2vh;
+
+  background-color: #dbdaa36b;
+}
+.pach {
+  height: auto;
+  width: auto;
+
+  margin-top: 1.5vh;
+  border-radius: 10px;
+  padding: 1vh 2vh;
+
+  background-color: #dbdaa36b;
+}
+.Lotes {
+  height: auto;
+  width: auto;
+
+  margin-top: 1.5vh;
+  border-radius: 10px;
+  padding: 1vh 2vh;
+
+  background-color: #dbdaa36b;
+}
+
+.Lote {
+  height: auto;
+  width: auto;
+
+  margin-top: 1.5vh;
+  border-radius: 10px;
+  padding: 1vh 2vh;
+
+  background-color: #dbdaa36b;
+}
+
+
+.copy-json{
+    display:  none;
+}
+.btn-copy{
+    background-color: seagreen;
+    height: 5%;
+    width: 95%;
+    text-align: center;
+
+    margin-top: 5vh;
+}
