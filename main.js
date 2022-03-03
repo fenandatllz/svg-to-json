@@ -36,7 +36,9 @@ const main = {
       "cls-7",
       "cls-8",
       "cls-9",
-      "cls-2",
+      "cls-10",
+      "cls-11",
+      "cls-12",
     ];
 
     let detailsSvg = new Array();
@@ -56,22 +58,25 @@ const main = {
 
       manzanasJSON.Numero = i.id;
 
-      console.log("i.id: ", i.id);
+      // console.log("i.id: ", i.id);
 
       let c = Array.from(i.children);
 
       let tempPath = c.filter((e) => {
-        if (!e.id.includes(`-L`)) {
+        // console.log("id: ", e.id)
+        if (!e.id.includes(`-L`) && !e.id.includes(`-A`)) {
           e.dataset.manzana = i.id;
           return JSON.stringify(e.outerHTML);
         }
       });
+      // console.log("tempPath: ", tempPath)
 
       manzanasJSON.path = tempPath[0]?.outerHTML;
 
       let Lotes = c.filter((x) => {
-        if (x.id.includes(`${i.id}-L`)) return JSON.stringify(x.outerHTML);
+        if (x.id.includes(`${i.id}-L`) || x.id.includes(`${i.id}-A`)) return JSON.stringify(x.outerHTML);
       });
+      // console.log("Lotes", Lotes)
 
       manzanasJSON.Lotes = Lotes.map((x) => {
         return x.outerHTML;
@@ -83,25 +88,37 @@ const main = {
     Manzanas.sort(
       (a, b) => a.Numero.replace(/\D+/g, "") - b.Numero.replace(/\D+/g, "")
     );
+    // console.log("Manzanas", Manzanas)
 
     Manzanas.forEach((M) => {
       let num = M.Numero.replace(/\D+/g, "");
-
-      let TempPosition = this.position(num);
-      let futureNum = parseInt(num) + 1;
-      let futurePosition = this.position(futureNum);
-
-      if (position == TempPosition) block.push(M);
-
-      blocks[position] = block;
-
-      if (futurePosition > position) {
-        block = [];
-        position = futurePosition;
+      position = this.position(num);
+      if(blocks[position] === undefined){
+        block.push(M);
+        blocks = Array.from(block)
+        
       }
+  
     });
 
-    svgJSON.blocks = blocks;
+    let _Blocks = new Array()
+    blocks.forEach((M) => {
+      let num = M.Numero.replace(/\D+/g, "");
+      let position = this.position(num);
+
+      Manzanas.forEach((_M) => {
+        let _item = new Array()
+        let _num = _M.Numero.replace(/\D+/g, "");
+        let _position = this.position(_num);
+
+        if(position == _position){ 
+          if(_Blocks[position] === undefined) _Blocks[position] = new Array() 
+            _Blocks[position].push(_M)
+        }   
+      })
+    })
+
+    svgJSON.blocks = _Blocks;
 
     cls.forEach((cl) => {
       const cls3 = Array.from(document.querySelectorAll(`.${cl}`));

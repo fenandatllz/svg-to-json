@@ -7,7 +7,6 @@
 svg {
   height: 100%;
   width: 100%;
-  /* z-index: -1; */
   z-index: 1;
   /* transition: 1s ease-in-out 0s; */
 }
@@ -25,7 +24,6 @@ svg {
     background-color: seagreen;
     height: 100vh;
     width: 100vw;
-    
     z-index: 1;
     /* transition: 1s ease-in-out 0s; */
 }
@@ -33,40 +31,44 @@ svg {
 body {
   height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 .container {
   height: 300vh;
   width: 100%;
-
   display: flex;
-  /* justify-content: space-around; */
   align-items: center;
   flex-direction: column;
   overflow-x: hidden;
-
-  background-color: #dbdaa36b;
+  background-color:#e0dfdf;
 }
 .container-2{
-    height: 100vh;
-  width: 100%;
-
+  height: 100vh;
+   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
 }
 
-
 .box {
-  /* height: 90%;
-  width: 47%; */
-  /* border: 2px solid rgb(0, 0, 0); */
   border-radius: 10px;
-  /* overflow: hidden; */
-
-  background-image: linear-gradient(#feffff, #f5f8d4);
-  box-shadow: 1px 10px 5px 8px rgba(0, 0, 0, 0.1);
+  background-color: #d3cfcf;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid #535353;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #bdbdbd; 
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(163, 162, 162); 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 .svg {
@@ -121,8 +123,6 @@ body {
 .box-block {
   height: auto;
   width: 98%;
-
-  background-color: #dbdaa36b;
 }
 
 .escalon:first-child {
@@ -162,7 +162,7 @@ body {
   border-radius: 10px;
   padding: 1vh 2vh;
 
-  background-color: #dbdaa36b;
+  background-color: #cfcccc;
 }
 
 .Lote {
@@ -173,18 +173,27 @@ body {
   border-radius: 10px;
   padding: 1vh 2vh;
 
-  background-color: #dbdaa36b;
+  background-color: #c5c2c2;
 }
-
 
 .copy-json{
     display:  none;
 }
 .btn-copy{
-    background-color: seagreen;
-    height: 5%;
+    background-color: rgb(46, 139, 87);
+    height: 6%;
     width: 95%;
-    text-align: center;
-
     margin-top: 5vh;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3vh;
+}
+
+.btn-copy:hover{
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(46, 139, 87, 1);
+  transition: all 0.2s ease;
 }
