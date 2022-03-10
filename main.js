@@ -25,21 +25,9 @@ const main = {
   },
   convertToJSON() {
     const svg = Array.from(document.querySelectorAll("g"));
+    console.log("svg: ", svg);
 
     const jsonDiv = document.getElementById("json");
-
-    const cls = [
-      "cls-3",
-      "cls-4",
-      "cls-5",
-      "cls-6",
-      "cls-7",
-      "cls-8",
-      "cls-9",
-      "cls-10",
-      "cls-11",
-      "cls-12",
-    ];
 
     let detailsSvg = new Array();
 
@@ -54,71 +42,103 @@ const main = {
     let svgJSON = {};
 
     svg.forEach((i) => {
-      let manzanasJSON = {};
+      console.log("Index: ", i.id.charAt(0), " - id: ", i.id);
+      if (i.id.charAt(0) === "M") {
+        let manzanasJSON = {};
 
-      manzanasJSON.Numero = i.id;
+        manzanasJSON.Numero = i.id;
 
-      // console.log("i.id: ", i.id);
+        // console.log("i.id: ", i.id);
 
-      let c = Array.from(i.children);
+        let c = Array.from(i.children);
 
-      let tempPath = c.filter((e) => {
-        // console.log("id: ", e.id)
-        if (!e.id.includes(`-L`) && !e.id.includes(`-A`)) {
-          e.dataset.manzana = i.id;
-          return JSON.stringify(e.outerHTML);
-        }
-      });
-      // console.log("tempPath: ", tempPath)
+        let tempPath = c.filter((e) => {
+          // console.log("id: ", e.id)
+          if (!e.id.includes(`-L`) && !e.id.includes(`-A`)) {
+            e.dataset.manzana = i.id;
+            return JSON.stringify(e.outerHTML);
+          }
+        });
+        // console.log("tempPath: ", tempPath)
 
-      manzanasJSON.path = tempPath[0]?.outerHTML;
+        manzanasJSON.path = tempPath[0]?.outerHTML;
 
-      let Lotes = c.filter((x) => {
-        if (x.id.includes(`${i.id}-L`) || x.id.includes(`${i.id}-A`)) return JSON.stringify(x.outerHTML);
-      });
-      // console.log("Lotes", Lotes)
+        let Lotes = c.filter((x) => {
+          if (x.id.includes(`${i.id}-L`) || x.id.includes(`${i.id}-A`)) {
+            if (x.id.includes(`${i.id}-L`)) {
+              x.dataset.lote = "";
+            }
 
-      manzanasJSON.Lotes = Lotes.map((x) => {
-        return x.outerHTML;
-      });
+            return JSON.stringify(x.outerHTML);
+          }
+        });
+        // console.log("Lotes", Lotes)
 
-      Manzanas.push(manzanasJSON);
+        manzanasJSON.Lotes = Lotes.map((x) => {
+          return x.outerHTML;
+        });
+
+        Manzanas.push(manzanasJSON);
+      }
     });
+
+    console.log("Manzanas: ", Manzanas);
 
     Manzanas.sort(
       (a, b) => a.Numero.replace(/\D+/g, "") - b.Numero.replace(/\D+/g, "")
     );
     // console.log("Manzanas", Manzanas)
 
-    Manzanas.forEach((M) => {
-      let num = M.Numero.replace(/\D+/g, "");
-      position = this.position(num);
-      if(blocks[position] === undefined){
-        block.push(M);
-        blocks = Array.from(block)
-        
-      }
-  
-    });
+    // Manzanas.forEach((M) => {
+    //   let num = M.Numero.replace(/\D+/g, "");
+    //   position = this.position(num);
+    //   if (blocks[position] === undefined) {
+    //     block.push(M);
+    //     blocks = Array.from(block);
+    //   }
+    // });
 
-    let _Blocks = new Array()
-    blocks.forEach((M) => {
+    // console.log("blocks: ", blocks);
+
+    let _Blocks = new Array();
+    Manzanas.forEach((M) => {
       let num = M.Numero.replace(/\D+/g, "");
       let position = this.position(num);
 
-      Manzanas.forEach((_M) => {
-        let _item = new Array()
-        let _num = _M.Numero.replace(/\D+/g, "");
-        let _position = this.position(_num);
+      if (_Blocks[position] === undefined) {
+        _Blocks[position] = new Array();
+        _Blocks[position].push(M);
+      } else {
+        _Blocks[position].push(M);
+      }
 
-        if(position == _position){ 
-          if(_Blocks[position] === undefined) _Blocks[position] = new Array() 
-            _Blocks[position].push(_M)
-        }   
-      })
-    })
+      // Manzanas.forEach((_M) => {
+      //   let _item = new Array();
+      //   let _num = _M.Numero.replace(/\D+/g, "");
+      //   let _position = this.position(_num);
+
+      //   if (position == _position) {
+      //     if (_Blocks[position] === undefined) _Blocks[position] = new Array();
+      //     _Blocks[position].push(_M);
+      //   }
+      // });
+    });
+
+    console.log("_Blocks: ", _Blocks);
 
     svgJSON.blocks = _Blocks;
+
+    const cls = [
+      "cls-4",
+      "cls-5",
+      "cls-6",
+      "cls-7",
+      "cls-8",
+      "cls-9",
+      "cls-10",
+      "cls-11",
+      "cls-12",
+    ];
 
     cls.forEach((cl) => {
       const cls3 = Array.from(document.querySelectorAll(`.${cl}`));
