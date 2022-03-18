@@ -128,26 +128,41 @@ const main = {
 
     svgJSON.blocks = _Blocks;
 
-    const cls = [
-      "cls-4",
-      "cls-5",
-      "cls-6",
-      "cls-7",
-      "cls-8",
-      "cls-9",
-      "cls-10",
-      "cls-11",
-      "cls-12",
-    ];
-
+    // const cls = [
+    //   "cls-4",
+    //   "cls-5",
+    //   "cls-6",
+    //   "cls-7",
+    //   "cls-8",
+    //   "cls-9",
+    //   "cls-10",
+    //   "cls-11",
+    //   "cls-12",
+    // ];
+    let cls = Array.from(document.querySelectorAll('[class*="cls-"]'));
+    let resultCls = []
+    
+    const classDetails = []
     cls.forEach((cl) => {
+      let clsClass = cl.getAttribute('class')
+      let tempclsClass = clsClass.split("-")
+      clsClass = tempclsClass[1]
+      if(clsClass > 6)
+      {
+        classDetails.push(`cls-${clsClass}`)
+      }
+      resultCls = classDetails.filter((item,index)=>{
+        return classDetails.indexOf(item) === index;
+      })
+    });
+    resultCls.forEach((cl) => {
       const cls3 = Array.from(document.querySelectorAll(`.${cl}`));
       let tempCls = cls3.map((cls) => {
         return cls.outerHTML;
       });
       detailsSvg.push(tempCls);
     });
-
+    
     svgJSON.details = detailsSvg;
 
     this.pintarJSON(svgJSON);
