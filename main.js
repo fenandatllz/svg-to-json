@@ -108,12 +108,12 @@ const main = {
 
     console.log("_Blocks: ", _Blocks);
 
+    let viewBoxSVG = document.querySelector('svg').getAttribute('viewBox');
     svgJSON.blocks = _Blocks;
     let tempDetails = Array.from ( document.getElementById('Detalles').children);
     
 
     let details = tempDetails.map((e) =>{ return e.outerHTML })
-
 
     let temNnumeros = Array.from ( document.getElementById('Numeros').children)
 
@@ -123,6 +123,7 @@ const main = {
 
     
     svgJSON.details = [details,numeros];
+    svgJSON.viewBoxSVG = [viewBoxSVG];
 
     // console.log("svgJSON: ",svgJSON )
 
