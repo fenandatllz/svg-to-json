@@ -17,9 +17,13 @@ const main = {
         .writeText(constent)
         .then(() => {
           console.log("Text copied to clipboard...");
+          showAlert('sucess', 'Text copied to clipboard...')
+          closeAlert()
         })
         .catch((err) => {
           console.log("Something went wrong", err);
+          showAlert('danger', 'Something went wrong')
+          closeAlert()
         });
     });
   },
@@ -218,3 +222,25 @@ btnProcces.addEventListener("click", (e) => {
 
   // main.main();
 });
+
+const btnNew = document.getElementById('btn-new')
+
+btnNew.addEventListener('click', () =>{
+  window.location.reload();
+  window.scrollTo({
+    top: 0,
+  });
+})
+
+function showAlert (type, msg) {
+  const divAlert = document.getElementById('alert')
+  divAlert.innerHTML = `<p>${msg}</p> <span>x</span>`
+  divAlert.classList.add('show', `${type}`)
+}
+
+function closeAlert(){
+  const divAlert = document.getElementById('alert')
+  setTimeout(function(){
+    divAlert.classList.remove('show')
+  }, 3500)
+}

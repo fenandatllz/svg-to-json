@@ -12,7 +12,7 @@ svg {
 }
 
 .text-svg{
-    margin-top: 10vh;
+    margin-top: 5vh;
     min-height: 80vh;
     max-height: 80vh;
     min-width: 95vw;
@@ -181,7 +181,7 @@ body {
 }
 .btn-copy{
     background-color: rgb(46, 139, 87);
-    height: 6%;
+    /* height: 6%; */
     width: 95%;
     margin-top: 5vh;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
@@ -190,10 +190,39 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 3vh;
+    padding: 15px 0px;
 }
 
 .btn-copy:hover{
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(46, 139, 87, 1);
   transition: all 0.2s ease;
+}
+.btn-area{
+  width: 95%;
+  display: flex;
+  gap: 1rem;
+}
+.alert-copy{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  background-color: rgb(46, 139, 87);
+  color: #fff;
+  padding: 15px;
+  position: fixed;
+  top: -55px;
+  border-radius: 0px 0px 8px 8px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+  transition: all 0.5s ease-in;
+}
+.show{
+  top: 0px;
+}
+.sucess{
+  background-color: rgb(46, 139, 87);
+}
+.danger{
+  background-color: rgb(145, 26, 26);
 }
