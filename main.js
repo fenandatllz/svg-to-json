@@ -17,17 +17,21 @@ const main = {
         .writeText(constent)
         .then(() => {
           console.log("Text copied to clipboard...");
+          showAlert('sucess', 'Text copied to clipboard...')
+          closeAlert()
         })
         .catch((err) => {
           console.log("Something went wrong", err);
+          showAlert('danger', 'Something went wrong')
+          closeAlert()
         });
     });
   },
   convertToJSON() {
-    const svg = Array.from(document.querySelectorAll("g"));
-    console.log("svg: ", svg);
+    const svg = Array.from(document.getElementById("Manzana").children);
+    // const tempSvg = Array.from(document.querySelectorAll("g"));
 
-    const jsonDiv = document.getElementById("json");
+    console.log("svg: ", svg);
 
     let detailsSvg = new Array();
 
@@ -42,7 +46,9 @@ const main = {
     let svgJSON = {};
 
     svg.forEach((i) => {
-      console.log("Index: ", i.id.charAt(0), " - id: ", i.id);
+      // console.log("ID: ",i.id)
+      if(i.id != "Numeros"){
+      // console.log("Index: ", i.id.charAt(0), " - id: ", i.id);
       if (i.id.charAt(0) === "M") {
         let manzanasJSON = {};
 
@@ -78,8 +84,11 @@ const main = {
           return x.outerHTML;
         });
 
+        // console.log("manzanasJSON: ", manzanasJSON) 
+
         Manzanas.push(manzanasJSON);
       }
+    }
     });
 
     console.log("Manzanas: ", Manzanas);
@@ -87,18 +96,6 @@ const main = {
     Manzanas.sort(
       (a, b) => a.Numero.replace(/\D+/g, "") - b.Numero.replace(/\D+/g, "")
     );
-    // console.log("Manzanas", Manzanas)
-
-    // Manzanas.forEach((M) => {
-    //   let num = M.Numero.replace(/\D+/g, "");
-    //   position = this.position(num);
-    //   if (blocks[position] === undefined) {
-    //     block.push(M);
-    //     blocks = Array.from(block);
-    //   }
-    // });
-
-    // console.log("blocks: ", blocks);
 
     let _Blocks = new Array();
     Manzanas.forEach((M) => {
@@ -111,47 +108,32 @@ const main = {
       } else {
         _Blocks[position].push(M);
       }
-
-      // Manzanas.forEach((_M) => {
-      //   let _item = new Array();
-      //   let _num = _M.Numero.replace(/\D+/g, "");
-      //   let _position = this.position(_num);
-
-      //   if (position == _position) {
-      //     if (_Blocks[position] === undefined) _Blocks[position] = new Array();
-      //     _Blocks[position].push(_M);
-      //   }
-      // });
     });
 
     console.log("_Blocks: ", _Blocks);
 
+    let viewBoxSVG = document.querySelector('svg').getAttribute('viewBox');
     svgJSON.blocks = _Blocks;
+    let tempDetails = Array.from ( document.getElementById('Detalles').children);
+    
 
-    const cls = [
-      "cls-4",
-      "cls-5",
-      "cls-6",
-      "cls-7",
-      "cls-8",
-      "cls-9",
-      "cls-10",
-      "cls-11",
-      "cls-12",
-    ];
+    let details = tempDetails.map((e) =>{ return e.outerHTML })
 
-    cls.forEach((cl) => {
-      const cls3 = Array.from(document.querySelectorAll(`.${cl}`));
-      let tempCls = cls3.map((cls) => {
-        return cls.outerHTML;
-      });
-      detailsSvg.push(tempCls);
-    });
+    let temNnumeros = Array.from ( document.getElementById('Numeros').children)
 
-    svgJSON.details = detailsSvg;
+
+    let numeros = temNnumeros.map((e) =>{ return e.outerHTML })
+
+
+    
+    svgJSON.details = [details,numeros];
+    svgJSON.viewBoxSVG = [viewBoxSVG];
+
+    // console.log("svgJSON: ",svgJSON )
 
     this.pintarJSON(svgJSON);
     this.copy(svgJSON);
+    
   },
   pintarJSON(svgJSON) {
     const containerJSON = document.getElementById("json");
@@ -240,3 +222,25 @@ btnProcces.addEventListener("click", (e) => {
 
   // main.main();
 });
+
+const btnNew = document.getElementById('btn-new')
+
+btnNew.addEventListener('click', () =>{
+  window.location.reload();
+  window.scrollTo({
+    top: 0,
+  });
+})
+
+function showAlert (type, msg) {
+  const divAlert = document.getElementById('alert')
+  divAlert.innerHTML = `<p>${msg}</p> <span>x</span>`
+  divAlert.classList.add('show', `${type}`)
+}
+
+function closeAlert(){
+  const divAlert = document.getElementById('alert')
+  setTimeout(function(){
+    divAlert.classList.remove('show')
+  }, 3500)
+}
