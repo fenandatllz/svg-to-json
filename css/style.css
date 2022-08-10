@@ -5,6 +5,7 @@
 }
 
 svg {
+  pointer-events: none;
   height: 100%;
   width: 100%;
   z-index: 1;
@@ -35,21 +36,37 @@ body {
 }
 
 .container {
-  height: 300vh;
-  width: 100%;
-  display: flex;
+  height: 100vh;
+  width: 100vw;
+  /* display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  overflow-x: hidden;
-  background-color:#e0dfdf;
+  flex-direction: column; */
+  background-color:#e0dfdf; 
+  display: grid;
+  gap: 1vh;
+  grid-template-columns: 5% 90% 5%;
+  grid-template-rows: 5% 70% 10% 10% 5%;
+  grid-template-areas: ". . ."
+                       ". container2 ."
+                       ". json ."
+                       ". btns ."
+                       ". . .";
 }
 .container-2{
-  height: 100vh;
-   width: 100%;
+  grid-area: container2;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
+  /* height: 60%;
+  width: 100vw; */
+  /* display: grid;
+  gap: 1vh;
+  grid-template-columns: 5% 20% 70% 5%;
+  grid-template-rows: 20% 70%;
+  grid-template-areas: ". list svg ."
+                       ". list svg ."; */
 }
 
 .box {
@@ -72,22 +89,19 @@ body {
 }
 
 .svg {
-  height: 90%;
-  width: 75%;
-  /* z-index: 0; */
+  margin-left: 1%;
+  height: 100%;
+  width: 80%;
 }
 
-/* .svg:hover{
-    background-color: seagreen;
-} */
-
 .listado{
-    height: 90%;
-    width: 15%;
-    overflow-y: auto; 
+  height: 100%;
+  width: 19%;
+  overflow-y: auto; 
 }
 
 .ol-manzana {
+  pointer-events: none;
   height: auto;
   width: 100%;
   /* overflow-y: auto; */
@@ -100,65 +114,110 @@ body {
 }
 
 .json {
-  height: 40%;
-  width: 95%;
+  grid-area: json;
+  /* height: 20%;
+  width: 95%; */
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
   justify-content: start;
   align-items: flex-start;
   flex-direction: column;
-  /* overflow-y: scroll; */
-  /* overflow-x: hidden; */
+}
+
+
+.showJSON{
+  margin: 0%;
+  padding: 0%;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+  top: 5vh;
+  height: 90vh;
+  width: 90vw;
 }
 
 .container_boxBlock {
+  pointer-events: none;
   height: auto;
   width: auto;
   border-radius: 10px;
-  /* overflow-y: auto; */
-  /* overflow: hidden; */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .box-block {
+  pointer-events: none;
   height: auto;
   width: 98%;
+  background-color: #ffe3aa;
+  border-radius: 10px;
+  margin-top: 1vh;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: start;
+}
+
+.box-block-m{
+  pointer-events: none;
+  height: auto;
+  width: 98%;
+  background-color: #fffaf1;
+  border-radius: 10px;
+  margin-top: 1vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .escalon:first-child {
+  pointer-events: none;
   margin-top: 1vh;
 }
 
 .escalon {
+  pointer-events: none;
   /* width: 100px; */
-  margin-left: 1vw;
+  /* margin-left: 1vw; */
 }
 
 .numero {
+  pointer-events: none;
   height: auto;
   width: auto;
 
-  margin-top: 1.5vh;
+  margin: 1.5vh 1%;
   border-radius: 10px;
   padding: 1vh 2vh;
 
   background-color: #dbdaa36b;
 }
 .pach {
+  pointer-events: none;
   height: auto;
   width: auto;
 
-  margin-top: 1.5vh;
+  margin: 1.5vh 1%;
   border-radius: 10px;
   padding: 1vh 2vh;
 
   background-color: #dbdaa36b;
 }
 .Lotes {
+  pointer-events: none;
   height: auto;
   width: auto;
 
-  margin-top: 1.5vh;
+  margin: 1.5vh 1%;
   border-radius: 10px;
   padding: 1vh 2vh;
 
@@ -166,6 +225,7 @@ body {
 }
 
 .Lote {
+  pointer-events: none;
   height: auto;
   width: auto;
 
@@ -183,14 +243,14 @@ body {
     background-color: rgb(46, 139, 87);
     /* height: 6%; */
     width: 95%;
-    margin-top: 5vh;
+    margin-top: 1vh;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 3vh;
-    padding: 15px 0px;
+    /* padding: 15px 0px; */
 }
 
 .btn-copy:hover{
@@ -199,11 +259,14 @@ body {
   transition: all 0.2s ease;
 }
 .btn-area{
-  width: 95%;
+  grid-area: btns;
+  /* width: 95%; */
   display: flex;
   gap: 1rem;
 }
 .alert-copy{
+  /* align-self: center; */
+  justify-self: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -225,4 +288,49 @@ body {
 }
 .danger{
   background-color: rgb(145, 26, 26);
+}
+
+[data-manzana] {
+  pointer-events: all;
+}
+
+[data-manzana]:hover {
+  stroke: #111111;
+  animation: popup 0.75s ease alternate infinite;
+}
+
+[data-piso] {
+  pointer-events: all;
+}
+
+[data-piso]:hover {
+  stroke: #111111;
+  animation: popup 0.75s ease alternate infinite;
+}
+
+[data-lote] {
+  pointer-events: all;
+}
+
+[data-lote]:hover {
+  stroke: #111111;
+  animation: popup 0.75s ease alternate infinite;
+}
+
+@keyframes popup {
+  0% {
+    stroke-width: 3px;
+  }
+  25% {
+    stroke-width: 5px;
+  }
+  50% {
+    stroke-width: 7px;
+  }
+  75% {
+    stroke-width: 8px;
+  }
+  100% {
+    stroke-width: 9px;
+  }
 }
