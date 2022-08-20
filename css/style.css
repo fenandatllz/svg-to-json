@@ -153,7 +153,7 @@ body {
   pointer-events: none;
   height: auto;
   width: 98%;
-  background-color: #ffe3aa;
+  background-color: #c5c3be;
   border-radius: 10px;
   margin-top: 1vh;
 
@@ -169,7 +169,7 @@ body {
   pointer-events: none;
   height: auto;
   width: 98%;
-  background-color: #fffaf1;
+  background-color: #cdcbc9;
   border-radius: 10px;
   margin-top: 1vh;
 
@@ -249,7 +249,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3vh;
+    /* margin-bottom: 3vh; */
     /* padding: 15px 0px; */
 }
 

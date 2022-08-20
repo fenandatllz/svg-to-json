@@ -73,3 +73,22 @@ btnCopy.addEventListener("click", (e) => {
       util.closeAlert();
     });
 });
+
+const btnCopyCss = document.getElementById("btn-copy-css");
+btnCopyCss.addEventListener("click", (e) => {
+  let content = document.getElementById("copy-css").innerHTML;
+  content = content.replace(/<br\s*\/?>/gi,' ')
+
+  navigator.clipboard
+    .writeText(content)    
+    .then(() => {
+      console.log("Text copied to clipboard...");
+      util.showAlert("sucess", "Text copied to clipboard...");
+      util.closeAlert();
+    })
+    .catch((err) => {
+      console.log("Something went wrong", err);
+      util.showAlert("danger", "Something went wrong");
+      util.closeAlert();
+    });
+});
