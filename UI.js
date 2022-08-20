@@ -8,15 +8,21 @@ const util = {
         const spanJson = document.getElementById("copy-json");
         spanJson.innerText = JSON.stringify(json);
     },
+    copyCSS(css){
+        const spanCSS = document.getElementById("copy-css");
+        spanCSS.innerText = css;
+    },
     reload() {
         const containerJSON = document.getElementById("json");
         const listado = document.getElementById("listado");
         const copy = document.getElementById("copy-json");
+        const copyCSS = document.getElementById("copy-css");
         const svg = document.getElementById("svg");
 
         containerJSON.innerHTML = "";
         listado.innerHTML = "";
         copy.innerHTML = "";
+        copyCSS.innerHTML = "";
         svg.innerHTML = "";
         window.scrollTo({
             top: 0,
@@ -109,6 +115,9 @@ const util = {
 
 const main = {
     convertToJSON_F() {
+        let css = document.getElementsByTagName('style')
+        css = css[1].innerHTML
+
         const svg = Array.from(document.getElementById("Manzana").children);
         let Manzanas = new Array();
         let svgJSON = {};
@@ -201,8 +210,12 @@ const main = {
 
         util.pintarJSON(svgJSON);
         util.copy(svgJSON);
+        util.copyCSS(css);
     },
     convertToJSON_T() {
+        let css = document.getElementsByTagName('style')
+        css = css[1].innerHTML
+
         const svg = Array.from(document.getElementById("Pisos").children);
         let Pisos = new Array();
         let svgJSON = {};
@@ -295,6 +308,7 @@ const main = {
 
         util.pintarJSON(svgJSON);
         util.copy(svgJSON);
+        util.copyCSS(css);
     },
 };
 
