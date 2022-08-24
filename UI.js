@@ -116,7 +116,14 @@ const util = {
 const main = {
     convertToJSON_F() {
         let css = document.getElementsByTagName('style')
-        css = css[1].innerHTML
+        if(css.length == 1)
+        {
+            css = css[0].innerHTML
+ 
+        }
+        else{
+            css = css[1].innerHTML
+        }
 
         const svg = Array.from(document.getElementById("Manzana").children);
         let Manzanas = new Array();
@@ -214,8 +221,15 @@ const main = {
     },
     convertToJSON_T() {
         let css = document.getElementsByTagName('style')
-        css = css[1].innerHTML
-
+        if(css.length == 1)
+        {
+            css = css[0].innerHTML
+ 
+        }
+        else{
+            css = css[1].innerHTML
+        }
+        
         const svg = Array.from(document.getElementById("Pisos").children);
         let Pisos = new Array();
         let svgJSON = {};
