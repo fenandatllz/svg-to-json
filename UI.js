@@ -236,7 +236,17 @@ const main = {
                     let tempPath = c.filter((e) => {
                         // console.log("id: ", e.id)
                         if (!e.id.includes(`-D`) && !e.id.includes(`-A`)) {
-                            e.dataset.piso = i.id;
+                            
+                            if (e.id.includes(`-X`)) {
+                                let id = e.id;
+                                let splitId = id.split(`-X`)
+                                console.log("splitId: ", splitId)
+                                e.dataset.detalle = `D-${splitId[1]}`
+                                e.id = splitId[0]
+                                e.dataset.piso =  i.id;
+                            }else{
+                                e.dataset.piso = i.id;
+                            }
                             return JSON.stringify(e.outerHTML);
                         }
                     });
@@ -290,8 +300,16 @@ const main = {
         let viewBoxSVG = document.querySelector("svg").getAttribute("viewBox");
         svgJSON.blocks = _Blocks;
         let tempDetails = Array.from(document.getElementById("Detalles").children);
-
+        let cont = 1
+        let lengthDetails = new Array()
         let details = tempDetails.map((e) => {
+            
+            if (e.id.includes(`D-`)) {
+                let detalle = `D-${cont}`
+                // e.dataset.detalle = detalle
+                lengthDetails.push(detalle)
+                cont ++
+            }
             return e.outerHTML;
         });
 
@@ -302,6 +320,7 @@ const main = {
         });
 
         svgJSON.details = [details, numeros];
+        svgJSON.lengthDetails = lengthDetails
         svgJSON.viewBoxSVG = [viewBoxSVG];
 
         // console.log("svgJSON: ",svgJSON )
