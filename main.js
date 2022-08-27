@@ -1,6 +1,8 @@
 "use strict";
 
 import { main, util } from './UI.js'
+const btnNew = document.getElementById('btn-new')
+const btnCopy = document.getElementById("btn-copy");
 
 document.addEventListener('click', (e) => {
   // console.log("data-show")
@@ -12,12 +14,6 @@ document.addEventListener('click', (e) => {
       e.target.classList.remove('showJSON')
     }
   }
-})
-
-const btnNew = document.getElementById('btn-new')
-
-btnNew.addEventListener('click', () => {
-  util.reload()
 })
 
 document.addEventListener('dragover', (e) => {
@@ -55,7 +51,9 @@ document.addEventListener('drop', (e) => {
   }
 })
 
-const btnCopy = document.getElementById("btn-copy");
+btnNew.addEventListener('click', () => {
+  util.reload()
+})
 
 btnCopy.addEventListener("click", (e) => {
   const constent = document.getElementById("copy-json").innerHTML;

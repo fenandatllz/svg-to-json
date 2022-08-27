@@ -140,7 +140,7 @@ body {
 .container_boxBlock {
   pointer-events: none;
   height: auto;
-  width: auto;
+  width: 100%;
   border-radius: 10px;
   
   display: flex;
@@ -204,7 +204,8 @@ body {
 .pach {
   pointer-events: none;
   height: auto;
-  width: auto;
+  width: 95%;
+  overflow: hidden;
 
   margin: 1.5vh 1%;
   border-radius: 10px;
@@ -216,18 +217,19 @@ body {
   pointer-events: none;
   height: auto;
   width: auto;
+  overflow: hidden;
 
   margin: 1.5vh 1%;
   border-radius: 10px;
   padding: 1vh 2vh;
 
-  background-color: #cfcccc;
+  background-color: #dbdaa36b;
 }
 
 .Lote {
   pointer-events: none;
   height: auto;
-  width: auto;
+  width: 98%;
 
   margin-top: 1.5vh;
   border-radius: 10px;
