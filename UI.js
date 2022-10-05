@@ -155,6 +155,13 @@ const main = {
 
                     let Lotes = c.filter((x) => {
                         if (x.id.includes(`${i.id}-L`) || x.id.includes(`${i.id}-A`)) {
+                            if (x.id.includes(`-E`)) {
+                                let id = x.id;
+                                let splitId = id.split(`-E`)
+                                console.log("splitId: ", splitId)
+                                x.dataset.entregable = "true"
+                                x.id = splitId[0]
+                            }
                             if (x.id.includes(`${i.id}-L`)) {
                                 x.dataset.lote = "";
                             }
