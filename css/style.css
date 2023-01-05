@@ -47,11 +47,17 @@ body {
   gap: 1vh;
   grid-template-columns: 5% 90% 5%;
   grid-template-rows: 5% 70% 10% 10% 5%;
-  grid-template-areas: ". . ."
+  grid-template-areas: ". title ."
                        ". container2 ."
                        ". json ."
                        ". btns ."
                        ". . .";
+}
+
+.menu{
+  grid-area: title;
+  text-align: center;
+  margin: auto;
 }
 .container-2{
   grid-area: container2;

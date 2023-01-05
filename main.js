@@ -3,6 +3,7 @@
 import { main, util } from './UI.js'
 const btnNew = document.getElementById('btn-new')
 const btnCopy = document.getElementById("btn-copy");
+const menu = document.querySelector('.menu')
 
 document.addEventListener('click', (e) => {
   // console.log("data-show")
@@ -26,6 +27,9 @@ document.addEventListener('drop', (e) => {
 
   if (e.dataTransfer.files.length) {
     var archivo = e.dataTransfer.files[0];
+    menu.innerHTML = `
+    <h3>${e.dataTransfer.files[0].name}</h3>
+    `
     if (!archivo) {
       return;
     }

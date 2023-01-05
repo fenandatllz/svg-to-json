@@ -158,7 +158,7 @@ const main = {
                             if (x.id.includes(`-E`)) {
                                 let id = x.id;
                                 let splitId = id.split(`-E`)
-                                console.log("splitId: ", splitId)
+                                // console.log("splitId: ", splitId)
                                 x.dataset.entregable = "true"
                                 x.id = splitId[0]
                             }
